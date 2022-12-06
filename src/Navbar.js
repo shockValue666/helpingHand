@@ -21,7 +21,7 @@ const Navbar = ({accounts,setAccounts}) => {
                 if(accounts[0]){
                         setAddress(accounts[0].slice(0,3) + "..." + accounts[0].slice(39,42))
                 }
-        })
+        },[accounts])
 
         return (<Flex justify="space-between" align="center" padding="30px">
                 {/* left side */}

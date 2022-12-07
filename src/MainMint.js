@@ -2,6 +2,8 @@ import {useState} from 'react';
 import {ethers,BigNumber} from 'ethers';
 import kavli from './kavli.json';
 import {Box,Button,Flex,Input,Text} from '@chakra-ui/react'
+// import Web3 from "web3";
+
 
 const psoliAddress = "0x9Cde01341f44316FaB8F8C214dD26C8b2B6ec977"
 
@@ -14,18 +16,26 @@ const MainMint = ({accounts,setAccounts}) => {
 
  
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            console.log("provider: ",provider)
-            // const provider = new ethers.providers.AlchemyProvider("maticmum","414JCUN442EFE4BTK4YCYSCD6AE63APV7W");
             const signer = provider.getSigner();
-            console.log("signer: ",signer)
             const contract = new ethers.Contract(
                 psoliAddress,
                 kavli.abi,
-                signer
+                signer,
             );
+            // let web3 = new Web3(window.ethereum);
+            // let contract = await new web3.eth.Contract(kavli.abi, psoliAddress);
+            // console.log("contract: ",contract)
             try{
                 // const response = await contract.mint(BigNumber.from(mintAmount));
-                await contract.mint(BigNumber.from(mintAmount));
+                // const gasPrice= signer.gasPrice;
+                // console.log("gasPrice: ",gasPrice)
+                // const gasLimit = contract.estimateGas.mint(BigNumber.from(10));
+                // console.log("gasLimit: ",gasLimit)
+                console.log("address: ",accounts[0]);
+                const response = await contract.mint(BigNumber.from(mintAmount),{value:String(6900000000000000*mintAmount)})
+                // console.log(response)
+
+                // const result = contract.methods.mint(mintAmount).send({from:accounts[0],value:String(69000000000000000)})
             }catch(err){
                 console.log("error: ",err)
             }

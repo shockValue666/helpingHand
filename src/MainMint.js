@@ -3,7 +3,7 @@ import {ethers,BigNumber} from 'ethers';
 import kavli from './kavli.json';
 import {Box,Button,Flex,Input,Text} from '@chakra-ui/react'
 
-const psoliAddress = "0x45d7d2169fC456668Ea76a6f35148abf67dD745A"
+const psoliAddress = "0x9Cde01341f44316FaB8F8C214dD26C8b2B6ec977"
 
 const MainMint = ({accounts,setAccounts}) => {
     const [mintAmount,setMintAmount] = useState(1);
@@ -11,8 +11,13 @@ const MainMint = ({accounts,setAccounts}) => {
 
     async function handleMint(){
         if(window.ethereum){
+
+ 
             const provider = new ethers.providers.Web3Provider(window.ethereum);
+            console.log("provider: ",provider)
+            // const provider = new ethers.providers.AlchemyProvider("maticmum","414JCUN442EFE4BTK4YCYSCD6AE63APV7W");
             const signer = provider.getSigner();
+            console.log("signer: ",signer)
             const contract = new ethers.Contract(
                 psoliAddress,
                 kavli.abi,

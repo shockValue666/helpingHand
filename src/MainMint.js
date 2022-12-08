@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {ethers,BigNumber} from 'ethers';
 import kavli from './kavli.json';
-import {Box,Button,Flex,Input,Text} from '@chakra-ui/react'
+import {Box,Button,Alert,Flex,Input,Text} from '@chakra-ui/react'
 import LogoBears from './assets/social-media-icons/Logo-pbi-white.png';
 
 
@@ -10,6 +10,7 @@ const psoliAddress = "0xc8F84aef6B1C887c5BC7844cAB883e2c3531Db8E"
 const MainMint = ({accounts,setAccounts}) => {
     const [mintAmount,setMintAmount] = useState(1);
     const isConnected = Boolean(accounts[0]);
+    const [notification,setNotification] = useState("")
 
     async function handleMint(){
         if(window.ethereum){
@@ -33,10 +34,12 @@ const MainMint = ({accounts,setAccounts}) => {
                 // console.log("gasLimit: ",gasLimit)
                 console.log("address: ",accounts[0]);
                 const response = await contract.mint(BigNumber.from(mintAmount),{value:String(6900000000000000*mintAmount)})
-                // console.log(response)
+                setNotification(`https://mumbai.polygonscan.com/tx/${response.hash}`)
+                console.log(response)
 
                 // const result = contract.methods.mint(mintAmount).send({from:accounts[0],value:String(69000000000000000)})
             }catch(err){
+                alert("error! try again")
                 console.log("error: ",err)
             }
         }
@@ -51,7 +54,7 @@ const MainMint = ({accounts,setAccounts}) => {
     }
 
     function handleIncrement() {
-        if(mintAmount >= 3){
+        if(mintAmount >= 69){
             return;
         }else{
             setMintAmount(mintAmount+1);
@@ -62,6 +65,18 @@ const MainMint = ({accounts,setAccounts}) => {
         <div>
         <Flex justify="center" align="center" height="100%" paddingBottom="150px"  >
             <Box width="520px" >
+                {
+                    notification ? 
+                    (
+                        <Alert status='error' variant="solid" sx={{color:"white",fontSize:"20px", border:"1px solid green",textDecoration:"none"}}>
+                            <a href={notification} target={"_blank"} rel="noreferrer" style={{textDecoration:"none",color:"white"}}>
+                                {notification}
+                            </a>
+                        </Alert>
+                    ) 
+                    :
+                    (null)
+                }
                 <div>
                     <Text fontSize="48px" textShadow={"0 5px #000000"} style={{color:"white"}}>The Rocket 🚀 Frogs 🐸 Club</Text>
                     <Text
@@ -90,6 +105,7 @@ const MainMint = ({accounts,setAccounts}) => {
                                 fontFamily="inherit"
                                 padding="15px"
                                 marginTop="10px"
+                                fontSize="20px"
                                 onClick={handleDecrement}> - </Button>
                                 <Input 
                                 readOnly
@@ -100,6 +116,7 @@ const MainMint = ({accounts,setAccounts}) => {
                                 paddingLeft="19px"
                                 marginTop="10px"
                                 type="number"
+                                fontSize="25px"
                                 value={mintAmount} />
                                 <Button
                                 backgroundColor={"#D6517D"}
@@ -110,6 +127,7 @@ const MainMint = ({accounts,setAccounts}) => {
                                 fontFamily="inherit"
                                 padding="15px"
                                 marginTop="10px"
+                                fontSize="20px"
                                 onClick={handleIncrement}> + </Button>
                             </Flex>
                             <Button 

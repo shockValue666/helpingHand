@@ -2,10 +2,10 @@ import {useState} from 'react';
 import {ethers,BigNumber} from 'ethers';
 import kavli from './kavli.json';
 import {Box,Button,Flex,Input,Text} from '@chakra-ui/react'
-// import Web3 from "web3";
+import LogoBears from './assets/social-media-icons/Logo-pbi-white.png';
 
 
-const psoliAddress = "0x9Cde01341f44316FaB8F8C214dD26C8b2B6ec977"
+const psoliAddress = "0xc8F84aef6B1C887c5BC7844cAB883e2c3531Db8E"
 
 const MainMint = ({accounts,setAccounts}) => {
     const [mintAmount,setMintAmount] = useState(1);
@@ -71,8 +71,9 @@ const MainMint = ({accounts,setAccounts}) => {
                     textShadow="0 2px 2px #000000"
                     style={{color:"white"}}>The Rocket Frogs Club is a collection of 5000 randomly generated #NFTs living on the #Polygon blockchain.</Text>
                     <Text color={"white"}>
-                        Half the money collected will be donated Polar Bears Int.
+                        Half the money collected will be donated <a href="https://polarbearsinternational.org/" style={{textDecoration:"none",color:"white",fontSize:"35px"}}>Polar Bears Int.</a> 
                     </Text>
+                    <img src={LogoBears} alt="" height={180} width={180} />
                 </div>
 
                 {
@@ -120,6 +121,7 @@ const MainMint = ({accounts,setAccounts}) => {
                             fontFamily="inherit"
                             padding="15px"
                             marginTop="10px"
+                            fontSize="30px"
                             onClick={handleMint}>Mint</Button>
                         </div>
                     )

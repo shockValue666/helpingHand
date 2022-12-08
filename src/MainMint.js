@@ -33,7 +33,7 @@ const MainMint = ({accounts,setAccounts}) => {
                 // const gasLimit = contract.estimateGas.mint(BigNumber.from(10));
                 // console.log("gasLimit: ",gasLimit)
                 console.log("address: ",accounts[0]);
-                const response = await contract.mint(BigNumber.from(mintAmount),{value:String(6900000000000000*mintAmount)})
+                const response = await contract.mint(BigNumber.from(mintAmount),{value:String(14000000000000000000*mintAmount)})
                 setNotification(`https://mumbai.polygonscan.com/tx/${response.hash}`)
                 console.log(response)
                 alert("success!")

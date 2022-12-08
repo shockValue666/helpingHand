@@ -5,7 +5,7 @@ import {Box,Button,Alert,Flex,Input,Text} from '@chakra-ui/react'
 import LogoBears from './assets/social-media-icons/Logo-pbi-white.png';
 
 
-const psoliAddress = "0xc8F84aef6B1C887c5BC7844cAB883e2c3531Db8E"
+const psoliAddress = "0x4A527ef00F3319FAF793B3400A5761e2fc69df9D"
 
 const MainMint = ({accounts,setAccounts}) => {
     const [mintAmount,setMintAmount] = useState(1);
@@ -36,6 +36,7 @@ const MainMint = ({accounts,setAccounts}) => {
                 const response = await contract.mint(BigNumber.from(mintAmount),{value:String(6900000000000000*mintAmount)})
                 setNotification(`https://mumbai.polygonscan.com/tx/${response.hash}`)
                 console.log(response)
+                alert("success!")
 
                 // const result = contract.methods.mint(mintAmount).send({from:accounts[0],value:String(69000000000000000)})
             }catch(err){
@@ -86,7 +87,7 @@ const MainMint = ({accounts,setAccounts}) => {
                     textShadow="0 2px 2px #000000"
                     style={{color:"white"}}>The Rocket Frogs Club is a collection of 5000 randomly generated #NFTs living on the #Polygon blockchain.</Text>
                     <Text color={"white"}>
-                        Half the money collected will be donated <a href="https://polarbearsinternational.org/" style={{textDecoration:"none",color:"white",fontSize:"35px"}}>Polar Bears Int.</a> 
+                        Half the money collected will be donated <a href="https://polarbearsinternational.org/" target="_blank" rel="noreferrer" style={{textDecoration:"none",color:"white",fontSize:"35px"}}>Polar Bears Int.</a> 
                     </Text>
                     <img src={LogoBears} alt="" height={180} width={180} />
                 </div>
@@ -141,6 +142,7 @@ const MainMint = ({accounts,setAccounts}) => {
                             marginTop="10px"
                             fontSize="30px"
                             onClick={handleMint}>Mint</Button>
+                        <h2 style={{color:"white"}}>${13*mintAmount} $MATIC</h2>
                         </div>
                     )
                     :

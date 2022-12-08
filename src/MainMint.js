@@ -142,7 +142,7 @@ const MainMint = ({accounts,setAccounts}) => {
                             marginTop="10px"
                             fontSize="30px"
                             onClick={handleMint}>Mint</Button>
-                        <h2 style={{color:"white"}}>${13*mintAmount} $MATIC</h2>
+                        <h2 style={{color:"white"}}>${14*mintAmount} $MATIC</h2>
                         </div>
                     )
                     :

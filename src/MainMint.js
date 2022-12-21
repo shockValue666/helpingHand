@@ -5,7 +5,7 @@ import {Box,Button,Alert,Flex,Input,Text} from '@chakra-ui/react'
 import LogoBears from './assets/social-media-icons/Logo-pbi-white.png';
 
 
-const psoliAddress = "0x4A527ef00F3319FAF793B3400A5761e2fc69df9D"
+const psoliAddress = "0x326a7f5a43719181C7Ad08F3DA95AD2f32483cc3"
 
 const MainMint = ({accounts,setAccounts}) => {
     const [mintAmount,setMintAmount] = useState(1);
@@ -34,6 +34,7 @@ const MainMint = ({accounts,setAccounts}) => {
                 // console.log("gasLimit: ",gasLimit)
                 console.log("address: ",accounts[0]);
                 const response = await contract.mint(BigNumber.from(mintAmount),{value:String(14000000000000000000*mintAmount)})
+                // const response = await contract.mint(BigNumber.from(mintAmount),{value:String(140000000000000000*mintAmount)})
                 setNotification(`https://mumbai.polygonscan.com/tx/${response.hash}`)
                 console.log(response)
                 alert("success!")
